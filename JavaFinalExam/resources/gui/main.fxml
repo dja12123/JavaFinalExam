@@ -26,7 +26,7 @@
                      <content>
                         <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" vbarPolicy="ALWAYS">
                            <content>
-                              <ListView prefWidth="140.0" />
+                              <ListView prefWidth="134.0" />
                            </content>
                         </ScrollPane>
                      </content>
@@ -38,7 +38,7 @@
                      <content>
                         <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" vbarPolicy="ALWAYS">
                            <content>
-                              <ListView prefWidth="140.0" />
+                              <ListView prefWidth="134.0" />
                            </content>
                         </ScrollPane>
                      </content>
