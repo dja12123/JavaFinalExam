@@ -1,54 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <children>
-            <ScatterChart minHeight="600.0" minWidth="600.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </ScatterChart>
-            <VBox alignment="TOP_CENTER">
-               <children>
-                  <TitledPane text="속성별 강조">
-                     <content>
-                        <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" vbarPolicy="ALWAYS">
-                           <content>
-                              <ListView prefWidth="134.0" />
-                           </content>
-                        </ScrollPane>
-                     </content>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </TitledPane>
-                  <TitledPane text="강조 옵션">
-                     <content>
-                        <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" vbarPolicy="ALWAYS">
-                           <content>
-                              <ListView prefWidth="134.0" />
-                           </content>
-                        </ScrollPane>
-                     </content>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </TitledPane>
-                  <Button mnemonicParsing="false" text="잠재 우수고객 분석" />
-               </children></VBox>
+            <TitledPane text="표시그룹선택">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <content>
+                  <VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                     <children>
+                        <CheckBox fx:id="checkBox_groupVIP" mnemonicParsing="false" text="VIP">
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="checkBox_highFreq" mnemonicParsing="false" text="HighFreq">
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="checkBox_highPrice" mnemonicParsing="false" text="HighPrice">
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="checkBox_groupNormal" mnemonicParsing="false" text="Normal">
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="고객 속성 범례">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <content>
+                  <ListView fx:id="listView_consumerType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" />
+               </content>
+            </TitledPane>
+            <TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="고객 속성 데이터">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <content>
+                  <ListView fx:id="listView_consumerData" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" />
+               </content>
+            </TitledPane>
+            <Button fx:id="btn_loadSample" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="샘플 데이터 로드">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_kMeans" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="새로고침">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_analyze" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="잠재 우수고객 분석">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
-      </HBox>
-   </children>
-</AnchorPane>
+      </VBox>
+   </right>
+   <center>
+      <ScatterChart id="scatterChart_mainChart" fx:id="scatterChart_mainChart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="500.0" stylesheets="@chartStyle.css" BorderPane.alignment="CENTER">
+         <xAxis>
+            <NumberAxis />
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis />
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </ScatterChart>
+   </center>
+   <bottom>
+      <Label fx:id="label_info" text="Info" BorderPane.alignment="CENTER_LEFT" />
+   </bottom>
+</BorderPane>

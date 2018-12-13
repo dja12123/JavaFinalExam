@@ -6,57 +6,78 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DataSet
 {
 	public final String[] header;
-	public final ArrayList<String[]> data;
+	public final List<String[]> data;
+	public final int row, column;
 	
 	public DataSet(String[] header, ArrayList<String[]> data)
 	{
 		this.header = header;
-		this.data = data;
+		this.data = Collections.unmodifiableList(data);
+		this.row = header.length;
+		this.column = data.size();
+	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuffer buf = new StringBuffer();
+		buf.append("header: ");
+		for(int i = 0; i < this.header.length; ++i)
+		{
+			buf.append(this.header[i]);
+			buf.append(", ");
+		}
+		buf.delete(buf.length() - 2, buf.length());
+		buf.append("\nrows: ");
+		buf.append(this.data.size());
+		return buf.toString();
 	}
 	
 	public static DataSet getDataSetCSV(InputStream inputStream)
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-		
-		String line = br.readLine();
-		String[] token = line.split(",", -1);
-		String[] rowData = new String[token.length];
-		
-		
-		int row = 0;
-		int i;
-		
-		while ((line = br.readLine()) != null)
+		String[] header;
+		ArrayList<String[]> data;
+		try
 		{
-			// -1 옵션은 마지막 "," 이후 빈 공백도 읽기 위한 옵션
-			token = line.split(",", -1);
-			for (i = 0; i < 6; i++) {
-				indat[row][i] = Float.parseFloat(token[i]);
-			}
-
-			// CSV에서 읽어 배열에 옮긴 자료 확인하기 위한 출력
-			for (i = 0; i < 6; i++)
+			String line = br.readLine();
+			String[] token = line.split(",");
+			header = token;
+			int row = token.length;
+			data = new ArrayList<String[]>();
+			
+			while ((line = br.readLine()) != null)
 			{
-				System.out.print(indat[row][i] + ",");
+				token = line.split(",");
+				
+				if(token.length == row)
+				{
+					data.add(token);
+				}
 			}
-			System.out.println("");
-
-			row++;
 		}
-		br.close();
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		try
+		{
+			br.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 
-	} catch (FileNotFoundException e)
-	{
-		e.printStackTrace();
-	} catch (IOException e)
-	{
-		e.printStackTrace();
-	}
-		return null;
+		return new DataSet(header, data);
 	}
 }
