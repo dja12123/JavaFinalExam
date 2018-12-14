@@ -1,5 +1,6 @@
 # JavaFinalExam
 2018년도 고급자바프로그래밍 기말고사
+1661030 
 소비자의 소비 패턴을 구매빈도와 구매비용평균을 기준으로 Kmeans를 이용하여 군집화 시키는 프로그램 입니다.
 
 중간고사 메인: \src\kr\dja\javaMidtermExam\Core.java
